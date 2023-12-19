@@ -2,7 +2,10 @@
   "name": "@org/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "dev": "nx dev",
+    "start:next": "nx serve ca-next-demo"
+  },
   "private": true,
   "dependencies": {
     "@nx/next": "17.2.6",
