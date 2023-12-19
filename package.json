@@ -4,7 +4,8 @@
   "license": "MIT",
   "scripts": {
     "dev": "nx dev",
-    "start:next": "nx serve ca-next-demo"
+    "start:next": "nx serve ca-next-demo",
+    "build:next": "nx build ca-next-demo"
   },
   "private": true,
   "dependencies": {

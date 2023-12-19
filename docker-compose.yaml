@@ -1,0 +1,17 @@
+version: '3.9'
+services:
+  frontend:
+    build:
+      dockerfile: ./apps/ca-next-demo/Dockerfile
+      target: development
+      context: .
+    command: npm run start:next
+    ports:
+      - "3000:4200"
+    volumes:
+      - .:/app
+      - /app/node_modules
+networks:
+  default:
+    name: dev
+    driver: bridge
