@@ -1,4 +1,28 @@
-# Org
+# Org - CA Next Demo
+
+## Tech Stack
+- [x] nx
+- [x] nextjs
+
+
+```javascript
+$ npx create-nx-workspace
+
+√ Where would you like to create your workspace? · org
+√ Which stack do you want to use? · react
+√ What framework would you like to use? · nextjs
+√ Integrated monorepo, or standalone project? · integrated
+√ Application name · ca-next-demo
+√ Would you like to use the App Router (recommended)? · Yes
+√ Test runner to use for end to end (E2E) tests · playwright
+√ Default stylesheet format · css
+√ Enable distributed caching to make your CI faster · No
+
+
+```
+
+
+
 
 <a alt="Nx logo" href="https://nx.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45"></a>
 
