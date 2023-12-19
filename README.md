@@ -3,7 +3,7 @@
 ## Tech Stack
 - [x] nx
 - [x] nextjs
-
+- [x] docker
 
 ```javascript
 $ npx create-nx-workspace
@@ -19,9 +19,10 @@ $ npx create-nx-workspace
 √ Enable distributed caching to make your CI faster · No
 
 
+# docker
+$ docker-compose up
+http://localhost:3000
 ```
-
-
 
 
 <a alt="Nx logo" href="https://nx.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45"></a>
