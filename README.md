@@ -4,7 +4,8 @@
 - [x] nx
 - [x] nextjs
 - [x] docker
-
+- [x] storybook
+- 
 ```javascript
 $ npx create-nx-workspace
 
@@ -22,6 +23,18 @@ $ npx create-nx-workspace
 # docker
 $ docker-compose up
 http://localhost:3000
+
+# storybook
+$ yarn add -D @nx/storybook
+$ nx g @nx/storybook:configuration ca-next-demo
+>  NX  Generating @nx/storybook:configuration
+
+√ Do you want to set up Storybook interaction tests? (Y/n) · true
+√ Choose the Storybook framework that you need to use. · @storybook/nextjs
+
+$ nx run ca-next-demo:storybook
+http://localhost:4400/ 
+
 ```
 
 
