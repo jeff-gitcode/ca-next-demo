@@ -38,6 +38,10 @@ http://localhost:4400/
 
 # next-auth
 $ yarn add next-auth
+
+# tailwind
+$ nx g @nx/react:setup-tailwind --project=ca-next-demo
+
 ```
 
 
