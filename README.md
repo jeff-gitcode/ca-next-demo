@@ -5,7 +5,8 @@
 - [x] nextjs
 - [x] docker
 - [x] storybook
-- 
+- [x] next-auth
+- [x] tailwindcss
 ```javascript
 $ npx create-nx-workspace
 
@@ -35,6 +36,8 @@ $ nx g @nx/storybook:configuration ca-next-demo
 $ nx run ca-next-demo:storybook
 http://localhost:4400/ 
 
+# next-auth
+$ yarn add next-auth
 ```
 
 

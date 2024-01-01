@@ -1,4 +1,5 @@
 import styles from './page.module.css';
+import LoginRequired from './presentation/login-required';
 
 export default async function Index() {
   /*
@@ -6,6 +7,9 @@ export default async function Index() {
    *
    * Note: The corresponding styles are in the ./index.css file.
    */
+
+  return <LoginRequired />;
+
   return (
     <div className={styles.page}>
       <div className="wrapper">
