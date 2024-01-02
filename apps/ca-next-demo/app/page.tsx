@@ -1,5 +1,11 @@
+"use client";
+
+import Head from 'next/head';
+import { signIn, signOut, useSession } from 'next-auth/react';
+// import LoginRequired from './presentation/auth/login-required';
+// import { signIn, signOut, useSession } from 'next-auth/client';
+
 import styles from './page.module.css';
-import LoginRequired from './presentation/login-required';
 
 export default async function Index() {
   /*
@@ -8,7 +14,37 @@ export default async function Index() {
    * Note: The corresponding styles are in the ./index.css file.
    */
 
-  return <LoginRequired />;
+  const { data: session } = useSession();
+  return (
+    <div>
+      <Head>
+        <title>NextAuth Example</title>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+
+      <main>
+        {!session && (
+          <>
+            <div className="text-white px-6 py-4 border-0 rounded relative mb-4 bg-red-500"> Sign in to continue. {" "}
+            <button onClick={(e) => {
+              e.preventDefault();
+              signIn();
+            }}>Sign In</button>
+            </div>
+          </>
+        )}
+        {session && (
+          <>
+            <h1>Successfully signed in as {session.user?.email}</h1>
+            <button onClick={(e) => {
+              e.preventDefault();
+              signOut();
+            }}>sign out</button>
+          </>
+        )}
+      </main>
+    </div>
+  );
 
   return (
     <div className={styles.page}>

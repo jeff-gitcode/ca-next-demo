@@ -7,6 +7,7 @@
 - [x] storybook
 - [x] next-auth
 - [x] tailwindcss
+- 
 ```javascript
 $ npx create-nx-workspace
 
@@ -38,6 +39,9 @@ http://localhost:4400/
 
 # next-auth
 $ yarn add next-auth
+
+# generate a secret key
+$ openssl rand -base64 32
 
 # tailwind
 $ nx g @nx/react:setup-tailwind --project=ca-next-demo

@@ -1,0 +1,52 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Next.js: debug server-side",
+      "type": "node-terminal",
+      "request": "launch",
+      "command": "npm run dev"
+    },
+    {
+      "name": "Next.js: debug client-side",
+      "type": "chrome",
+      "request": "launch",
+      "url": "http://localhost:4200"
+    },
+    {
+      "name": "Next.js: debug full stack",
+      "type": "node-terminal",
+      "request": "launch",
+      "command": "yarn dev",
+      "console": "integratedTerminal",
+      "serverReadyAction": {
+        "pattern": "started server on .+, url: (https?://.+)",
+        "uriFormat": "%s",
+        "action": "debugWithChrome"
+      }
+    },
+    {
+      "name": "ca-next-demo – Server",
+      "type": "node",
+      "request": "launch",
+      "runtimeExecutable": "yarn",
+      "runtimeArgs": [
+        "nx",
+        "run",
+        "ca-next-demo:serve",
+        "-r",
+        "ts-node/register",
+        "-r",
+        "tsconfig-paths/register"
+      ],
+      "outputCapture": "std",
+      "internalConsoleOptions": "openOnSessionStart",
+      "console": "internalConsole",
+      "env": {
+        "TS_NODE_IGNORE": "false",
+        "TS_NODE_PROJECT": "${workspaceFolder}/apps/ca-next-demo/tsconfig.json"
+      },
+      "cwd": "${workspaceFolder}/apps/ca-next-demo/"
+    }
+  ]
+}
