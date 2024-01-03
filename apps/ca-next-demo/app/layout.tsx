@@ -2,6 +2,7 @@ import { getServerSession } from 'next-auth';
 import './global.css';
 import AuthProvider from './presentation/auth/provider';
 import { authOptions } from './api/auth/[...nextauth]/route';
+import NavBar from './presentation/navigation/page';
 
 export const metadata = {
   title: 'Welcome to ca-next-demo',
@@ -20,6 +21,7 @@ export default async function RootLayout({
     <html lang="en">
       <body>
         <AuthProvider session={session}>
+          <NavBar />
           {children}
         </AuthProvider></body>
     </html>

@@ -25,7 +25,7 @@ export default async function Index() {
       <main>
         {!session && (
           <>
-            <div className="text-white px-6 py-4 border-0 rounded relative mb-4 bg-red-500"> Sign in to continue. {" "}
+            <div className="text-white px-6 py-4 border-0 rounded relative mb-4 bg-red-500"> {" "}
             <button onClick={(e) => {
               e.preventDefault();
               signIn();
