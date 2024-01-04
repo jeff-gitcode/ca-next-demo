@@ -1,35 +1,46 @@
 import axios from 'axios';
 
-export interface ICustomerService {
-  getAllUsers(): Promise<any>;
-  getByUserId(): Promise<any>;
-  addUser(): Promise<any>;
-  updateUser(): Promise<any>;
-  deleteUser(): Promise<any>;
-}
+import { ICustomerService } from '../../application/abstract/icustomer-service';
+import { ICustomerUseCase } from '../../application/abstract/icustomer-usecase';
+import { Customer } from '../../domain/customer';
 
-class CustomerService {
+class CustomerService implements ICustomerService {
   /**
    * Get all posts
    * @returns
    */
-  getAllUsers() {
-    return axios.get("https://jsonplaceholder.typicode.com/users");
+  async getAllUsers(): ICustomerUseCase.outputs {
+    const response = axios.get("https://jsonplaceholder.typicode.com/users");
+    const result: Customer = {
+      id: "2",
+      name: "John Doe Update",
+      email: ""
+    };
+
+    return [result];
   }
 
   /**
    * Get By Id
    * @returns
    */
-  getByUserId() {
-    return axios.get("https://jsonplaceholder.typicode.com/users/1");
+  async getByUserId(): ICustomerUseCase.output {
+    const result: Customer = {
+      id: "2",
+      name: "John Doe Update",
+      email: ""
+    };
+
+    return result;
+
+    // return axios.get("https://jsonplaceholder.typicode.com/users/1");
   }
 
   /**
    *To Add a Post
    * @returns
    */
-  async addUser() {
+  async addUser(): ICustomerUseCase.output {
     const res = await axios.post("https://jsonplaceholder.typicode.com/users", {
       method: "POST",
       body: JSON.stringify({
@@ -43,14 +54,21 @@ class CustomerService {
         "Content-type": "application/json; charset=UTF-8",
       },
     });
-    return res;
+    const result: Customer = {
+      id: "2",
+      name: "John Doe Update",
+      email: ""
+    };
+
+    return result;
+
   }
 
   /**
    *To Update a Post
    * @returns
    */
-  async updateUser() {
+  async updateUser(): ICustomerUseCase.output {
     const res = await axios.put(
       "https://jsonplaceholder.typicode.com/posts/1",
       {
@@ -67,22 +85,38 @@ class CustomerService {
         },
       }
     );
-    return res;
+
+    const result: Customer = {
+      id: "2",
+      name: "John Doe Update",
+      email: ""
+    };
+
+    return result;
   }
 
   /**
    *To Delete a Post
    * @returns
    */
-  async deleteUser() {
+  async deleteUser(): ICustomerUseCase.output {
     const res = await axios.delete(
       "https://jsonplaceholder.typicode.com/posts/1",
       {
         method: "DELETE",
       }
     );
-    return res;
+
+    const result: Customer = {
+      id: "2",
+      name: "John Doe Update",
+      email: ""
+    };
+
+    return result;
+
+    // return res;
   }
 }
 
-export default new CustomerService();
+export default CustomerService;
