@@ -16,7 +16,6 @@ const NavBar = (
 
   return (
     <div>
-      <h1>Welcome to ca-next-demo!</h1>
       <nav>
         <ul className="flex">
           <li className="mr-6">
@@ -30,6 +29,7 @@ const NavBar = (
           </li>
         </ul>
       </nav>
+      <h1>Welcome to ca-next-demo!</h1>
       {children}
     </div>
   );
