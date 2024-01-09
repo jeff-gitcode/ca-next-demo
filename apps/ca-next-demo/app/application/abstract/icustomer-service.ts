@@ -1,9 +1,9 @@
-import { ICustomerUseCase } from "./icustomer-usecase";
+import { Customer } from "../../domain/customer";
 
 export interface ICustomerService {
-  getAllUsers(): ICustomerUseCase.outputs;
-  getByUserId(): ICustomerUseCase.output;
-  addUser(): ICustomerUseCase.output;
-  updateUser(): ICustomerUseCase.output;
-  deleteUser(): ICustomerUseCase.output;
+  getAllUsers(): Promise<Customer[] | []>;
+  getByUserId(): Promise<Customer>;
+  addUser(): Promise<Customer>;
+  updateUser(): Promise<Customer>;
+  deleteUser(): Promise<Customer>;
 }

@@ -1,5 +1,8 @@
-import { container } from "tsyringe";
-import CustomerService  from "./customer/customer-service";
-import { ICustomerService } from "../application/abstract/icustomer-service";
+// import "reflect-metadata"
 
-container.registerSingleton<ICustomerService>(ICustomerService, CustomerService);
+// import { container } from "tsyringe";
+
+// import CustomerService from "./customer/customer-service";
+// import { ICustomerService } from "../application/abstract/icustomer-service";
+
+// container.register<ICustomerService>("ICustomerService", CustomerService );

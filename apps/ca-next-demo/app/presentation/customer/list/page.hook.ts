@@ -1,12 +1,14 @@
 import { useQuery } from "react-query";
-import { container } from "tsyringe";
+// import { container, registry } from "tsyringe";
 
-import { ICustomerUseCase } from "../application/abstract/icustomer-usecase";
+import { ICustomerUseCase } from "../../../application/abstract/icustomer-usecase";
+import { myContainer } from "../../../inversify.config";
+import { TYPES } from "../../../types";
 
 const useAllUsers = () => {
-  const usecase: ICustomerUseCase = container.resolve(ICustomerUseCase);
+  const useCase = myContainer.get<ICustomerUseCase>(TYPES.CustomerUseCase);
 
-  return useQuery(["users"], usecase.getAllUsers());
+  return useQuery(["users"], useCase.getCustomers);
 };
 
 export {

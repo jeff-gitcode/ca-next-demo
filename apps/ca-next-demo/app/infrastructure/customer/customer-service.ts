@@ -1,15 +1,17 @@
+import { injectable } from 'inversify';
 import axios from 'axios';
+import "reflect-metadata";
 
 import { ICustomerService } from '../../application/abstract/icustomer-service';
-import { ICustomerUseCase } from '../../application/abstract/icustomer-usecase';
 import { Customer } from '../../domain/customer';
 
+@injectable()
 class CustomerService implements ICustomerService {
   /**
    * Get all posts
    * @returns
    */
-  async getAllUsers(): ICustomerUseCase.outputs {
+  async getAllUsers(): Promise<Customer[] | []> {
     const response = axios.get("https://jsonplaceholder.typicode.com/users");
     const result: Customer = {
       id: "2",
@@ -24,7 +26,7 @@ class CustomerService implements ICustomerService {
    * Get By Id
    * @returns
    */
-  async getByUserId(): ICustomerUseCase.output {
+  async getByUserId(): Promise<Customer> {
     const result: Customer = {
       id: "2",
       name: "John Doe Update",
@@ -40,7 +42,7 @@ class CustomerService implements ICustomerService {
    *To Add a Post
    * @returns
    */
-  async addUser(): ICustomerUseCase.output {
+  async addUser(): Promise<Customer> {
     const res = await axios.post("https://jsonplaceholder.typicode.com/users", {
       method: "POST",
       body: JSON.stringify({
@@ -68,7 +70,7 @@ class CustomerService implements ICustomerService {
    *To Update a Post
    * @returns
    */
-  async updateUser(): ICustomerUseCase.output {
+  async updateUser(): Promise<Customer> {
     const res = await axios.put(
       "https://jsonplaceholder.typicode.com/posts/1",
       {
@@ -99,7 +101,7 @@ class CustomerService implements ICustomerService {
    *To Delete a Post
    * @returns
    */
-  async deleteUser(): ICustomerUseCase.output {
+  async deleteUser(): Promise<Customer> {
     const res = await axios.delete(
       "https://jsonplaceholder.typicode.com/posts/1",
       {

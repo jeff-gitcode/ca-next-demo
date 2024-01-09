@@ -46,6 +46,9 @@ $ openssl rand -base64 32
 # tailwind
 $ nx g @nx/react:setup-tailwind --project=ca-next-demo
 
+# inversify
+$ yarn add -D inversify reflect-metadata
+
 ```
 
 

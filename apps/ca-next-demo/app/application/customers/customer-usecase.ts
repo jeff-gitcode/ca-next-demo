@@ -1,38 +1,62 @@
-import {inject, injectable } from "tsyringe";
+// import { inject, injectable, registry } from "tsyringe";
+import { inject, injectable } from "inversify";
+import "reflect-metadata";
 import { Customer } from "../../domain/customer";
 import { ICustomerUseCase } from "../abstract/icustomer-usecase";
-import { ICustomerService } from "../abstract/icustomer-service";
+import { TYPES } from "../../types";
+import * as icustomerService from "../abstract/icustomer-service";
+
 
 @injectable()
 export class CustomerUseCase implements ICustomerUseCase {
+  constructor(
+    @inject(TYPES.CustomerService)
+    private readonly iCustomerService: icustomerService.ICustomerService
+  ) {}
 
-  constructor(@inject(ICustomerService)
-  private service: ICustomerService) {
-
+  getCustomers(): Promise<Customer[] | []> {
+    return this.iCustomerService.getAllUsers();
   }
-
-  async createCustomer(customer: Customer): ICustomerUseCase.output {
-    // Implementation logic goes here
-    return null;
+  getCustomer(id: string): Promise<Customer> {
+    throw new Error("Method not implemented.");
   }
-
-  async getCustomer(id: string): ICustomerUseCase.output {
-    // Implementation logic goes here
-    return null;
+  createCustomer(customer: Customer): Promise<Customer> {
+    throw new Error("Method not implemented.");
   }
-
-  async updateCustomer(customer: Customer): ICustomerUseCase.output {
-    // Implementation logic goes here
-    return null;
+  updateCustomer(customer: Customer): Promise<Customer> {
+    throw new Error("Method not implemented.");
   }
-
-  async deleteCustomer(id: string): ICustomerUseCase.output {
-    // Implementation logic goes here
-    return null;
-  }
-
-  async getCustomers(): ICustomerUseCase.outputs {
-    // Implementation logic goes here
-    return [];
+  deleteCustomer(id: string): Promise<Customer> {
+    throw new Error("Method not implemented.");
   }
 }
+
+// @injectable()
+// export class CustomerUseCase implements ICustomerUseCase {
+//   @inject(TYPES.ICustomerService) private iCustomerService: ICustomerService;
+
+//   async createCustomer(customer: Customer): Promise<Customer> {
+//     // Implementation logic goes here
+//     return this.iCustomerService.addUser();
+//   }
+
+//   async getCustomer(id: string): Promise<Customer> {
+//     // Implementation logic goes here
+//     return this.iCustomerService.getByUserId();
+//   }
+
+//   async updateCustomer(customer: Customer): Promise<Customer> {
+//     // Implementation logic goes here
+//     return this.iCustomerService.updateUser();
+//   }
+
+//   async deleteCustomer(id: string): Promise<Customer> {
+//     // Implementation logic goes here
+//     return this.iCustomerService.deleteUser();
+//   }
+
+//   async getCustomers(): Promise<Customer[] | []> {
+//     // Implementation logic goes here
+//     return this.iCustomerService.getAllUsers();
+//   }
+// }
