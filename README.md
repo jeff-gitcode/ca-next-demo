@@ -7,6 +7,8 @@
 - [x] storybook
 - [x] next-auth
 - [x] tailwindcss
+- [x] react query
+- [x] inversify
 - 
 ```javascript
 $ npx create-nx-workspace
@@ -49,6 +51,8 @@ $ nx g @nx/react:setup-tailwind --project=ca-next-demo
 # inversify
 $ yarn add -D inversify reflect-metadata
 
+# react-query
+$ yarn add react-query
 ```
 
 

@@ -1,21 +1,22 @@
 // import { inject, injectable, registry } from "tsyringe";
 import { inject, injectable } from "inversify";
-import "reflect-metadata";
 import { Customer } from "../../domain/customer";
 import { ICustomerUseCase } from "../abstract/icustomer-usecase";
 import { TYPES } from "../../types";
-import * as icustomerService from "../abstract/icustomer-service";
+import { ICustomerService } from "../abstract/icustomer-service";
 
 
 @injectable()
-export class CustomerUseCase implements ICustomerUseCase {
+class CustomerUseCase implements ICustomerUseCase {
   constructor(
-    @inject(TYPES.CustomerService)
-    private readonly iCustomerService: icustomerService.ICustomerService
-  ) {}
+    @inject(TYPES.CustomerService) private service: ICustomerService
+  ) {
+    console.log("CustomerUseCase constructor");
+    console.log("iCustomerService: ", service);
+  }
 
-  getCustomers(): Promise<Customer[] | []> {
-    return this.iCustomerService.getAllUsers();
+  async getCustomers(): Promise<Customer[] | []> {
+    return await this.service.getAllUsers();
   }
   getCustomer(id: string): Promise<Customer> {
     throw new Error("Method not implemented.");
@@ -30,6 +31,8 @@ export class CustomerUseCase implements ICustomerUseCase {
     throw new Error("Method not implemented.");
   }
 }
+
+export default CustomerUseCase;
 
 // @injectable()
 // export class CustomerUseCase implements ICustomerUseCase {

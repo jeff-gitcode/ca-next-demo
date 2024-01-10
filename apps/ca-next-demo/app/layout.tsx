@@ -3,6 +3,7 @@ import './global.css';
 import AuthProvider from './presentation/auth/provider';
 import { authOptions } from './api/auth/[...nextauth]/route';
 import NavBar from './presentation/navigation/page';
+import QueryWrapper from '../query-wrapper';
 
 export const metadata = {
   title: 'Welcome to ca-next-demo',
@@ -20,10 +21,13 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body>
-        <AuthProvider session={session}>
-          <NavBar />
-          {children}
-        </AuthProvider></body>
+        <QueryWrapper>
+          <AuthProvider session={session}>
+            <NavBar />
+            {children}
+          </AuthProvider>
+        </QueryWrapper>
+      </body>
     </html>
   );
 }
