@@ -13,7 +13,7 @@ import { TYPES } from "../../../types";
 //   return JSON.stringify(res, null, 2);
 // };
 
-const useAllUsers = async () => {
+const useAllUsers = () => {
 
   return useQuery({
     queryKey: ['groups'], queryFn: async () => {

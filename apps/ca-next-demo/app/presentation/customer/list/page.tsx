@@ -2,18 +2,14 @@
 
 import { useAllUsers } from "./page.hook";
 
-const CustomerList = async () => {
-  const { data, status } = await useAllUsers();
-  console.log("data", data);
+const CustomerList = () => {
+  const { data, error, isLoading } = useAllUsers();
+  // console.log("data", data);
 
-  if (status === "loading") {
-    return <div>Loading...</div>;
-  }
+  if (isLoading) return <div>Fetching posts...</div>;
+  if (error) return <div>An error occurred</div>;
 
-  if (status === "error") {
-    return <div>Error fetching data</div>;
-  }
-
+  console.log("CustomerList", data);
   return (
     <div>
       <h1>Customers</h1>
