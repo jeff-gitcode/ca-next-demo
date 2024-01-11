@@ -54,7 +54,7 @@ class CustomerService implements ICustomerService {
    */
   async updateUser(user: Customer): Promise<Customer> {
     const response = await axios.put(
-      "https://jsonplaceholder.typicode.com/users/1",
+      "https://jsonplaceholder.typicode.com/users/" + user.id,
       {
         method: "PUT",
         body: JSON.stringify(user),
@@ -71,9 +71,9 @@ class CustomerService implements ICustomerService {
    *To Delete a user
    * @returns
    */
-  async deleteUser(): Promise<Customer> {
+  async deleteUser(id: string): Promise<Customer> {
     const response = await axios.delete(
-      "https://jsonplaceholder.typicode.com/users/1",
+      "https://jsonplaceholder.typicode.com/users/" + id,
       {
         method: "DELETE",
       }
