@@ -1,9 +1,10 @@
-import { useQuery } from "react-query";
+import { useMutation, useQuery } from "react-query";
 // import { container, registry } from "tsyringe";
 
 import { ICustomerUseCase } from "../../../application/abstract/icustomer-usecase";
 import { myContainer } from "../../../inversify.config";
 import { TYPES } from "../../../types";
+import { Customer } from "../../..//domain/customer";
 // import { Customer } from "../../../domain/customer";
 // import { useState } from "react";
 
@@ -16,7 +17,7 @@ import { TYPES } from "../../../types";
 const useAllUsers = () => {
 
   return useQuery({
-    queryKey: ['groups'], queryFn: async () => {
+    queryKey: ['useAllUsers'], queryFn: async () => {
       const useCase = myContainer.get<ICustomerUseCase>(TYPES.CustomerUseCase);
       return await useCase.getCustomers();
     }
@@ -49,6 +50,76 @@ const useAllUsers = () => {
   // return useQuery(["users"], result.data);
 };
 
+const useGetUserById = (id: string) => {
+  return useQuery({
+    queryKey: ['useGetUserById', id], queryFn: async () => {
+      const useCase = myContainer.get<ICustomerUseCase>(TYPES.CustomerUseCase);
+      return await useCase.getCustomer(id);
+    }
+  });
+}
+
+const useAddUser = () => {
+  return useMutation(async (values: Customer) => {
+    console.log("values: ", values);
+    const useCase = myContainer.get<ICustomerUseCase>(TYPES.CustomerUseCase);
+    return await useCase.createCustomer(values);
+  },
+    {
+      onError: (error: any) => {
+        console.log(error);
+      },
+      onSuccess: (data) => {
+        console.log("success", data);
+      },
+    })
+
+  // return useMutation({
+  //   queryKey: ['useAddUser', user], queryFn: async () => {
+  //     const useCase = myContainer.get<ICustomerUseCase>(TYPES.CustomerUseCase);
+  //     return await useCase.createCustomer(user);
+  //   }
+  // });
+}
+
+const useUpdateUser = () => {
+  return useMutation(
+    async (values: Customer) => {
+      const useCase = myContainer.get<ICustomerUseCase>(TYPES.CustomerUseCase);
+      return await useCase.updateCustomer(values);
+    },
+    {
+      onError: (error: any) => {
+        console.log(error);
+      },
+      onSuccess: (data) => {
+        console.log("success", data);
+      },
+    }
+  );
+}
+
+const useDeleteUser = () => {
+  return useMutation(
+    async (id: string) => {
+      const useCase = myContainer.get<ICustomerUseCase>(TYPES.CustomerUseCase);
+      return await useCase.deleteCustomer(id);
+    },
+    {
+      onError: (error: any) => {
+        console.log(error);
+      },
+      onSuccess: (data) => {
+        console.log("success", data);
+      },
+    }
+  );
+}
+
 export {
-  useAllUsers
+  useAllUsers,
+  useGetUserById,
+  useAddUser,
+  useUpdateUser,
+  useDeleteUser
 }

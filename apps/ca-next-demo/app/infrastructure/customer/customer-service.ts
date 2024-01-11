@@ -14,119 +14,73 @@ const apiClient = axios.create({
 @injectable()
 class CustomerService implements ICustomerService {
   // /**
-  //  * Get all posts
+  //  * Get all users
   //  * @returns
   //  */
   async getAllUsers(): Promise<Customer[] | []> {
     const response = await axios.get<Customer[]>("https://jsonplaceholder.typicode.com/users");
-    // const result: Customer = {
-    //   id: "2",
-    //   name: "John Doe Update",
-    //   email: ""
-    // };
-
-    //return [result];
-    // const response = await apiClient.get<Customer[]>("/users");
     return response.data;
   }
 
-  // /**
-  //  * Get By Id
-  //  * @returns
-  //  */
-  // async getByUserId(): Promise<Customer> {
-  //   const result: Customer = {
-  //     id: "2",
-  //     name: "John Doe Update",
-  //     email: ""
-  //   };
+  /**
+   * Get By Id
+   * @returns
+   */
+  async getByUserId(id: string): Promise<Customer> {
+    const response = await axios.get<Customer>("https://jsonplaceholder.typicode.com/users/" + id);
 
-  //   return result;
+    return response.data;
+  }
 
-  //   // return axios.get("https://jsonplaceholder.typicode.com/users/1");
-  // }
+  /**
+   *To Add a user
+   * @returns
+   */
+  async addUser(user: Customer): Promise<Customer> {
+    const response = await axios.post("https://jsonplaceholder.typicode.com/users", {
+      method: "POST",
+      body: JSON.stringify(user),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+    });
 
-  // /**
-  //  *To Add a Post
-  //  * @returns
-  //  */
-  // async addUser(): Promise<Customer> {
-  //   const res = await axios.post("https://jsonplaceholder.typicode.com/users", {
-  //     method: "POST",
-  //     body: JSON.stringify({
-  //       id: 2,
-  //       name: "John Doe",
-  //       username: "John",
-  //       email: "john.doe@test.com",
-  //       address: {}
-  //     }),
-  //     headers: {
-  //       "Content-type": "application/json; charset=UTF-8",
-  //     },
-  //   });
-  //   const result: Customer = {
-  //     id: "2",
-  //     name: "John Doe Update",
-  //     email: ""
-  //   };
+    return response.data;
+  }
 
-  //   return result;
+  /**
+   *To Update a user
+   * @returns
+   */
+  async updateUser(user: Customer): Promise<Customer> {
+    const response = await axios.put(
+      "https://jsonplaceholder.typicode.com/users/1",
+      {
+        method: "PUT",
+        body: JSON.stringify(user),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+        },
+      }
+    );
 
-  // }
+    return response.data;
+  }
 
-  // /**
-  //  *To Update a Post
-  //  * @returns
-  //  */
-  // async updateUser(): Promise<Customer> {
-  //   const res = await axios.put(
-  //     "https://jsonplaceholder.typicode.com/posts/1",
-  //     {
-  //       method: "PUT",
-  //       body: JSON.stringify({
-  //         id: 2,
-  //         name: "John Doe Update",
-  //         username: "John",
-  //         email: "john.doe@test.com",
-  //         address: {}
-  //       }),
-  //       headers: {
-  //         "Content-type": "application/json; charset=UTF-8",
-  //       },
-  //     }
-  //   );
+  /**
+   *To Delete a user
+   * @returns
+   */
+  async deleteUser(): Promise<Customer> {
+    const response = await axios.delete(
+      "https://jsonplaceholder.typicode.com/users/1",
+      {
+        method: "DELETE",
+      }
+    );
 
-  //   const result: Customer = {
-  //     id: "2",
-  //     name: "John Doe Update",
-  //     email: ""
-  //   };
-
-  //   return result;
-  // }
-
-  // /**
-  //  *To Delete a Post
-  //  * @returns
-  //  */
-  // async deleteUser(): Promise<Customer> {
-  //   const res = await axios.delete(
-  //     "https://jsonplaceholder.typicode.com/posts/1",
-  //     {
-  //       method: "DELETE",
-  //     }
-  //   );
-
-  //   const result: Customer = {
-  //     id: "2",
-  //     name: "John Doe Update",
-  //     email: ""
-  //   };
-
-  //   return result;
-
-  //   // return res;
-  // }
+    return response.data;
+  }
 }
 
 export default CustomerService;

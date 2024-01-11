@@ -18,17 +18,18 @@ class CustomerUseCase implements ICustomerUseCase {
   async getCustomers(): Promise<Customer[] | []> {
     return await this.service.getAllUsers();
   }
-  getCustomer(id: string): Promise<Customer> {
-    throw new Error("Method not implemented.");
+
+  async getCustomer(id: string): Promise<Customer> {
+    return await this.service.getByUserId(id);
   }
-  createCustomer(customer: Customer): Promise<Customer> {
-    throw new Error("Method not implemented.");
+  async createCustomer(customer: Customer): Promise<Customer> {
+    return await this.service.addUser(customer);
   }
-  updateCustomer(customer: Customer): Promise<Customer> {
-    throw new Error("Method not implemented.");
+  async updateCustomer(customer: Customer): Promise<Customer> {
+    return await this.service.updateUser(customer);
   }
-  deleteCustomer(id: string): Promise<Customer> {
-    throw new Error("Method not implemented.");
+  async deleteCustomer(id: string): Promise<Customer> {
+    return await this.service.deleteUser(id);
   }
 }
 
