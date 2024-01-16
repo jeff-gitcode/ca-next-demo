@@ -9,6 +9,7 @@
 - [x] tailwindcss
 - [x] react query
 - [x] inversify
+- [x] react hook form
 - 
 ```javascript
 $ npx create-nx-workspace
@@ -53,6 +54,10 @@ $ yarn add -D inversify reflect-metadata
 
 # react-query
 $ yarn add react-query
+
+# react hook form
+$ yarn add react-hook-form
+
 ```
 
 

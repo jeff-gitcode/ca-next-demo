@@ -3,8 +3,10 @@
 import { useAddUser, useAllUsers, useDeleteUser, useUpdateUser } from "./page.hook";
 import { Customer } from "../../../domain/customer";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const CustomerList = () => {
+  const router = useRouter();
   const { data: list, error, isLoading: isListLoading } = useAllUsers();
   const { mutate: addMutate, isLoading: isAddLoading, isError: isAddError } = useAddUser();
   // console.log("data", data);
@@ -16,7 +18,8 @@ const CustomerList = () => {
       email: "john.doe@test.com",
     };
 
-    addMutate(newEntity);
+    router.push('/presentation/customer/item/new');
+    // addMutate(newEntity);
   };
 
 
