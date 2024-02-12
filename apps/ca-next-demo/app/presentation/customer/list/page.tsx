@@ -90,7 +90,7 @@ const CustomerList = () => {
               ))}
               <td>
                 <Link
-                  href={`/presentation/customer/item/${row.id}`}
+                  href={`/presentation/customer/item/${row.original.id}`}
                   key={row.id}>
                   <li>
                     Edit
