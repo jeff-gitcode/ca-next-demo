@@ -10,6 +10,7 @@
 - [x] react query
 - [x] inversify
 - [x] react hook form
+- [x] tanstack react table
 - 
 ```javascript
 $ npx create-nx-workspace
@@ -58,6 +59,11 @@ $ yarn add react-query
 # react hook form
 $ yarn add react-hook-form
 
+# tanstack table
+$ yarn add @tanstack/react-table
+
+# tailwind css table
+$ yarn add  @heroicons/react
 ```
 
 

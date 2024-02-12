@@ -13,7 +13,9 @@
   },
   "private": true,
   "dependencies": {
+    "@heroicons/react": "^2.1.1",
     "@nx/next": "17.2.6",
+    "@tanstack/react-table": "^8.11.8",
     "next": "13.4.4",
     "next-auth": "^4.24.5",
     "react": "18.2.0",

@@ -24,7 +24,7 @@ export const authOptions: AuthOptions = {
       authorize: (credentials) => {
         console.log(credentials);
         if (credentials) {
-          return { id: "1", email: credentials.email, name: credentials.email, image: "https://www.gravatar.com/avat" }
+          return { id: "1", email: credentials.email, name: credentials.email, image: "" }
         }
 
         return null;
