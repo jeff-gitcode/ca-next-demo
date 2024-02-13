@@ -98,8 +98,8 @@ const CustomerItem = () => {
         <div className="inline-flex">
           <button className="mt-4 w-full bg-green-400 hover:bg-green-600 text-green-100 border shadow py-3 px-6 font-semibold text-md rounded" onClick={handleSubmit(handleUpdateEntity)}>{buttonName}</button>
           <button className="mt-4 w-full bg-green-400 hover:bg-green-600 text-green-100 border shadow py-3 px-6 font-semibold text-md rounded" onClick={handleSubmit(handleDeleteEntity)}>Delete</button>
-          <button>
-            <Link className="mt-4 w-full bg-green-400 hover:bg-green-600 text-green-100 border shadow py-3 px-6 font-semibold text-md rounded" href="/presentation/customer/list">Back</Link>
+          <button className="mt-4 w-full bg-green-400 hover:bg-green-600 text-green-100 border shadow py-3 px-6 font-semibold text-md rounded" >
+            <Link href="/presentation/customer/list">Back</Link>
           </button>
         </div>
       </form>

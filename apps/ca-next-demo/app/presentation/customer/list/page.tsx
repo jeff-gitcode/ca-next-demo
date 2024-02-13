@@ -101,6 +101,7 @@ const CustomerList = () => {
           ))}
         </tbody>
     </table>
+    <button className="mt-4 w-full bg-green-400 hover:bg-green-600 text-green-100 border shadow py-3 px-6 font-semibold text-md rounded"  onClick={() => handleCreateEntity()}>Create Entity</button>
     </div>
   );
 
