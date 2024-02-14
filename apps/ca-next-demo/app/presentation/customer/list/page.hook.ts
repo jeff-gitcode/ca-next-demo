@@ -1,10 +1,12 @@
-import { useMutation, useQuery } from "react-query";
+// import { useMutation, useQuery } from "react-query";
 // import { container, registry } from "tsyringe";
 
 import { ICustomerUseCase } from "../../../application/abstract/icustomer-usecase";
 import { myContainer } from "../../../inversify.config";
 import { TYPES } from "../../../types";
 import { Customer } from "../../..//domain/customer";
+import { useQuery } from "react-query";
+import { useMutation } from "@tanstack/react-query";
 // import { Customer } from "../../../domain/customer";
 // import { useState } from "react";
 

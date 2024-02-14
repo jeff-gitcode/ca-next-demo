@@ -64,6 +64,12 @@ $ yarn add @tanstack/react-table
 
 # tailwind css table
 $ yarn add  @heroicons/react
+
+# axios-mock-adapter
+$ yarn add -D axios-mock-adapter
+
+# testing-library/react-hooks 
+yarn add  -D @testing-library/react-hooks 
 ```
 
 
