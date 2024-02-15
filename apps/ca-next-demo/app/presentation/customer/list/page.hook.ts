@@ -1,11 +1,10 @@
-// import { useMutation, useQuery } from "react-query";
 // import { container, registry } from "tsyringe";
 
 import { ICustomerUseCase } from "../../../application/abstract/icustomer-usecase";
 import { myContainer } from "../../../inversify.config";
 import { TYPES } from "../../../types";
 import { Customer } from "../../..//domain/customer";
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 import { useMutation } from "@tanstack/react-query";
 // import { Customer } from "../../../domain/customer";
 // import { useState } from "react";
@@ -21,7 +20,8 @@ const useAllUsers = () => {
   return useQuery({
     queryKey: ['useAllUsers'], queryFn: async () => {
       const useCase = myContainer.get<ICustomerUseCase>(TYPES.CustomerUseCase);
-      return await useCase.getCustomers();
+      const result = await useCase.getCustomers();
+      return result;
     }
   });
 
@@ -62,19 +62,33 @@ const useGetUserById = (id: string) => {
 }
 
 const useAddUser = () => {
-  return useMutation(async (values: Customer) => {
-    console.log("values: ", values);
-    const useCase = myContainer.get<ICustomerUseCase>(TYPES.CustomerUseCase);
-    return await useCase.createCustomer(values);
-  },
-    {
-      onError: (error: any) => {
-        console.log(error);
-      },
-      onSuccess: (data) => {
-        console.log("success", data);
-      },
-    })
+  return useMutation({
+    mutationFn: async (values: Customer) => {
+      const useCase = myContainer.get<ICustomerUseCase>(TYPES.CustomerUseCase);
+      const result = await useCase.createCustomer(values);
+      return result;
+    },
+    onError: (error: any) => {
+      console.log(error);
+    },
+    onSuccess: (data) => {
+      console.log("success", data);
+    },
+  });
+
+  // return useMutation(async (values: Customer) => {
+  //   console.log("values: ", values);
+  //   const useCase = myContainer.get<ICustomerUseCase>(TYPES.CustomerUseCase);
+  //   return await useCase.createCustomer(values);
+  // },
+  //   {
+  //     onError: (error: any) => {
+  //       console.log(error);
+  //     },
+  //     onSuccess: (data) => {
+  //       console.log("success", data);
+  //     },
+  //   })
 
   // return useMutation({
   //   queryKey: ['useAddUser', user], queryFn: async () => {
@@ -85,36 +99,44 @@ const useAddUser = () => {
 }
 
 const useUpdateUser = () => {
-  return useMutation(
-    async (values: Customer) => {
+  // return useMutation(
+  //   async (values: Customer) => {
+  //     const useCase = myContainer.get<ICustomerUseCase>(TYPES.CustomerUseCase);
+  //     return await useCase.updateCustomer(values);
+  //   },
+  return useMutation({
+    mutationFn: async (values: Customer) => {
       const useCase = myContainer.get<ICustomerUseCase>(TYPES.CustomerUseCase);
       return await useCase.updateCustomer(values);
     },
-    {
-      onError: (error: any) => {
-        console.log(error);
-      },
-      onSuccess: (data) => {
-        console.log("success", data);
-      },
-    }
+    onError: (error: any) => {
+      console.log(error);
+    },
+    onSuccess: (data) => {
+      console.log("success", data);
+    },
+  }
   );
 }
 
 const useDeleteUser = () => {
-  return useMutation(
-    async (id: string) => {
+  // return useMutation(
+  //   async (id: string) => {
+  //     const useCase = myContainer.get<ICustomerUseCase>(TYPES.CustomerUseCase);
+  //     return await useCase.deleteCustomer(id);
+  //   },
+  return useMutation({
+    mutationFn: async (id: string) => {
       const useCase = myContainer.get<ICustomerUseCase>(TYPES.CustomerUseCase);
       return await useCase.deleteCustomer(id);
     },
-    {
-      onError: (error: any) => {
-        console.log(error);
-      },
-      onSuccess: (data) => {
-        console.log("success", data);
-      },
-    }
+    onError: (error: any) => {
+      console.log(error);
+    },
+    onSuccess: (data) => {
+      console.log("success", data);
+    },
+  }
   );
 }
 

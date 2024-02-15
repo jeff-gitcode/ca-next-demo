@@ -1,10 +1,11 @@
-import { ICustomerService } from "../../../application/customers/abstract/icustomer-service";
 import { Customer } from "app/domain/customer";
 import { TYPES } from "app/types";
 import { Container } from "inversify";
-import { useAllUsers } from "./page.hook";
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { useAddUser, useAllUsers, useGetUserById, useUpdateUser } from "./page.hook";
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { renderHook, waitFor } from "@testing-library/react";
+import { ICustomerUseCase } from "@/app/application/abstract/icustomer-usecase";
+import * as ReactQuery from "@tanstack/react-query";
 
 const user: Customer = {
   id: 'customer1',
@@ -17,28 +18,33 @@ const user: Customer = {
   company: 'customer1'
 };
 
-jest.mock('react-query', () => ({
-  useQuery: jest.fn().mockReturnValue(({ data: {...user}, isLoading: false,error:{} }))
- }));
+jest.mock("@tanstack/react-query", () => {
+  const original: typeof ReactQuery = jest.requireActual("@tanstack/react-query");
+
+  return {
+    ...original,
+    useQuery: () => ({ isLoading: false, error: {}, data: [user] }),
+  };
+});
 
 describe('CustomerListPageHook', () => {
   let iocContainer!: Container;
-  let service: ICustomerService;
+  let service: ICustomerUseCase;
 
   beforeEach(() => {
     service = {
-      getByUserId: jest.fn().mockResolvedValue('customer1'),
-      getAllUsers: jest.fn().mockResolvedValue(['customer1', 'customer2']),
-      addUser: jest.fn().mockResolvedValue(user),
-      updateUser: jest.fn().mockResolvedValue(user),
-      deleteUser: jest.fn().mockResolvedValue('customer1')
+      getCustomers: jest.fn().mockResolvedValue([user]),
+      getCustomer: jest.fn().mockResolvedValue(user),
+      createCustomer: jest.fn().mockResolvedValue(user),
+      updateCustomer: jest.fn().mockResolvedValue(user),
+      deleteCustomer: jest.fn().mockResolvedValue(user)
     };
 
     iocContainer = new Container();
     iocContainer.bind(TYPES.CustomerUseCase).to(service);
   });
 
-  it('should ...', async () => {
+  it('should return when useAllUsers', async () => {
     const queryClient = new QueryClient();
 
     const wrapper = ({ children }) => (
@@ -48,6 +54,34 @@ describe('CustomerListPageHook', () => {
     );
 
     const { result } = renderHook(() => useAllUsers(), { wrapper });
+
+    await waitFor(() => expect(result.current.data).toEqual([user]));
+  });
+
+  it('should return when useGetUserById', async () => {
+    const queryClient = new QueryClient();
+
+    const wrapper = ({ children }) => (
+      <QueryClientProvider client={queryClient}>
+        {children}
+      </QueryClientProvider>
+    );
+
+    const { result } = renderHook(() => useGetUserById('customer1'), { wrapper });
+
+    await waitFor(() => expect(result.current.data).toEqual(user));
+  });
+
+  it('should return when useAddUser', async () => {
+    const queryClient = new QueryClient();
+
+    const wrapper = ({ children }) => (
+      <QueryClientProvider client={queryClient}>
+        {children}
+      </QueryClientProvider>
+    );
+
+    const { result } = renderHook(() => useAddUser(), { wrapper });
 
     await waitFor(() => expect(result.current.data).toEqual(user));
   });

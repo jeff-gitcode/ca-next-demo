@@ -53,14 +53,12 @@ $ nx g @nx/react:setup-tailwind --project=ca-next-demo
 # inversify
 $ yarn add -D inversify reflect-metadata
 
-# react-query
-$ yarn add react-query
-
 # react hook form
 $ yarn add react-hook-form
 
 # tanstack table
 $ yarn add @tanstack/react-table
+$ yarn add -D @tanstack/react-query-devtools
 
 # tailwind css table
 $ yarn add  @heroicons/react
